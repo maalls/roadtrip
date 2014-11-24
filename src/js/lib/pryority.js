@@ -6,6 +6,7 @@ var pryority = {
     char_max = "z";
     var min_length = Math.min(before.length, after.length);
 
+    //console.log("min_length " + min_length);
     for(var i = 0; i < min_length; i++) {
 
       aChar = after.charAt(i);
@@ -64,13 +65,17 @@ var pryority = {
     }
     else {
 
+      //console.log("After longer.");
+
       for(var i = before.length; i < after.length; i++) {
 
         aChar = after.charAt(i);
+        console.log(aChar);
 
         if(aChar == "a") {
 
-          console.log("a found: " + priority);
+          priority += "a";
+          //console.log("a found: " + priority);
 
         }
         else if(aChar == "b") {
@@ -82,7 +87,7 @@ var pryority = {
         }
         else {
 
-          console.log("other found (" + aChar + "): " + this.incChar(aChar, -1));
+          //console.log("other found (" + aChar + "): " + this.incChar(aChar, -1));
           priority = priority + this.incChar(aChar, -1);
           
           return priority;

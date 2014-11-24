@@ -179,7 +179,7 @@ app.controller("tripCtrl", function($scope, $routeParams, $firebase, $timeout, $
 
     });
 
-    console.log("Set active");
+    console.log("Set active", event.$id);
 
     $scope.preSelection.length = event.name.length;
     
@@ -246,7 +246,7 @@ app.controller("tripCtrl", function($scope, $routeParams, $firebase, $timeout, $
   $scope.events.$watch(function(event) {
 
     var key = event.key;
-    console.log(event.event);
+    console.log(event.event, event.key);
     switch(event.event) {
 
       case 'child_changed':
@@ -435,25 +435,30 @@ function computeTotalDistance(result) {
           return;
 
         }
-        $scope.keyLock[8] = true;      
-        $scope.focusKey(key > 0 ? key - 1 : 0, function() { 
+        console.log("Removing key " + key);
+        eventDetail.$destroy();
+        $scope.keyLock[8] = true;
+        //eventDetail.$distroy();
+        console.log("Distroying active event");
+        $scope.events.$remove(ev).then(function(ref) {
 
-          $scope.events.$remove(ev).then(function(ref) {
+          
+          
+          console.log(ref.name(), "Key removed for " + key);
 
-            $scope.keyLock[8] = false;
+          $scope.focusKey(key > 0 ? key - 1 : 0, function() { 
+
+            $timeout(function() {$scope.keyLock[8] = false; console.log("Unlocking remove key"); }, 100);
             
-            console.log(ref.name(), "Key removed.");
-
-          }, function(error) {
-
-            alert("error");
-            console.log("error", error);
 
           });
 
-        });
+        }, function(error) {
 
-        
+          alert("error");
+          console.log("error", error);
+
+        });
         
 
       }
@@ -503,8 +508,8 @@ function computeTotalDistance(result) {
       $scope.events.$add(event).then(
         function(ref) {
 
-          $scope.keyLock[13] = false;
-          $timeout(function() { $("#event-" + ref.name()).focus() }, 0, false);
+          
+          $timeout(function() { $("#event-" + ref.name()).focus(); $scope.keyLock[13] = false; }, 0, false);
 
         }
       );

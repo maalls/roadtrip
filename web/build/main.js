@@ -84359,6 +84359,7 @@ if (typeof jQuery === 'undefined') {
     char_max = "z";
     var min_length = Math.min(before.length, after.length);
 
+    //console.log("min_length " + min_length);
     for(var i = 0; i < min_length; i++) {
 
       aChar = after.charAt(i);
@@ -84417,13 +84418,17 @@ if (typeof jQuery === 'undefined') {
     }
     else {
 
+      //console.log("After longer.");
+
       for(var i = before.length; i < after.length; i++) {
 
         aChar = after.charAt(i);
+        console.log(aChar);
 
         if(aChar == "a") {
 
-          console.log("a found: " + priority);
+          priority += "a";
+          //console.log("a found: " + priority);
 
         }
         else if(aChar == "b") {
@@ -84435,7 +84440,7 @@ if (typeof jQuery === 'undefined') {
         }
         else {
 
-          console.log("other found (" + aChar + "): " + this.incChar(aChar, -1));
+          //console.log("other found (" + aChar + "): " + this.incChar(aChar, -1));
           priority = priority + this.incChar(aChar, -1);
           
           return priority;
@@ -84738,7 +84743,7 @@ app.config(function($routeProvider, $locationProvider) {
 
     });
 
-    console.log("Set active");
+    console.log("Set active", event.$id);
 
     $scope.preSelection.length = event.name.length;
     
@@ -84805,7 +84810,7 @@ app.config(function($routeProvider, $locationProvider) {
   $scope.events.$watch(function(event) {
 
     var key = event.key;
-    console.log(event.event);
+    console.log(event.event, event.key);
     switch(event.event) {
 
       case 'child_changed':
@@ -84994,25 +84999,30 @@ function computeTotalDistance(result) {
           return;
 
         }
-        $scope.keyLock[8] = true;      
-        $scope.focusKey(key > 0 ? key - 1 : 0, function() { 
+        console.log("Removing key " + key);
+        eventDetail.$destroy();
+        $scope.keyLock[8] = true;
+        //eventDetail.$distroy();
+        console.log("Distroying active event");
+        $scope.events.$remove(ev).then(function(ref) {
 
-          $scope.events.$remove(ev).then(function(ref) {
+          
+          
+          console.log(ref.name(), "Key removed for " + key);
 
-            $scope.keyLock[8] = false;
+          $scope.focusKey(key > 0 ? key - 1 : 0, function() { 
+
+            $timeout(function() {$scope.keyLock[8] = false; console.log("Unlocking remove key"); }, 100);
             
-            console.log(ref.name(), "Key removed.");
-
-          }, function(error) {
-
-            alert("error");
-            console.log("error", error);
 
           });
 
-        });
+        }, function(error) {
 
-        
+          alert("error");
+          console.log("error", error);
+
+        });
         
 
       }
@@ -85062,8 +85072,8 @@ function computeTotalDistance(result) {
       $scope.events.$add(event).then(
         function(ref) {
 
-          $scope.keyLock[13] = false;
-          $timeout(function() { $("#event-" + ref.name()).focus() }, 0, false);
+          
+          $timeout(function() { $("#event-" + ref.name()).focus(); $scope.keyLock[13] = false; }, 0, false);
 
         }
       );
