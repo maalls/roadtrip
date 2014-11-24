@@ -1,0 +1,14 @@
+$font-stack:    Helvetica, sans-serif;
+$primary-color: blue;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+.header {
+
+  font-size: 24px;
+  color: black;
+
+}

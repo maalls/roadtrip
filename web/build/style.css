@@ -1,0 +1,149 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+body {
+
+  padding-top: 50px;
+
+}
+#left-panel {
+
+  overflow: auto;
+
+  height: 100%;
+
+  padding-right: 0px;
+  padding-left: 20px;
+  margin-right: 0px;
+
+}
+#right-panel {
+
+  padding-right: 20px;
+  height: 100%;
+  overflow: auto;
+
+}
+#left-panel input {
+
+  display:block; 
+  width: 100%;
+  border: 0px;
+
+
+
+}
+
+#left-panel input:hover {
+
+  cursor: pointer;
+
+}
+
+.move-icon {
+
+  display:none;
+  height: 20px;
+  position: absolute;
+  margin-left: -25px;
+
+}
+.move-icon:hover {
+
+  cursor: move;
+
+}
+#left-panel li:hover .move-icon {
+
+  display: block;
+
+}
+
+#left-panel li input:focus  {
+
+  outline: none;
+  }
+
+
+
+#event-list li.header-1 {
+
+  font-size: 16px;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  border-left: 0px;
+  border-right: 0px;
+
+
+}
+
+
+
+#event-list li.header-2 {
+
+  font-size: 14px;
+
+
+}
+
+#event-list li.header-3 {
+
+  font-size: 12px;
+  border-bottom: 0px solid #FFFFFF;
+  border-top: 1px solid #EFEFFF;
+  padding: 5px;
+  border-left: 0px;
+  border-right: 0px;
+
+}
+
+#left-panel li.selected {
+
+  background-color: #dde4ea;
+  
+}
+#left-panel li.selected input {
+
+  background-color: #dde4ea;
+
+
+}
+
+#active-event-name {
+
+  display: block;
+  width: 100%;
+
+}
+
+.debug-id {
+
+  font-size: 8px;
+
+}
+
+#map-canvas {
+
+  height: 750px;
+
+}
+
+#credit {
+
+  font-size: 8px;
+  text-align: center;
+  width: 100%;
+
+}
+
+.labels {
+   color: white;
+   background-color: red;
+   font-size: 10px;
+   text-align: left;
+   padding: 5px;
+   height:22px;
+   white-space: nowrap;
+ }

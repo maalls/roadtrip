@@ -1,0 +1,12 @@
+<ul id='trips' class=''>
+  <li ng-repeat='(key, trip) in trips'>
+    <input type="text" ng-model="trip.name" ng-change="updateTrip(key)"  />
+    <a href="/trip/{{trip.$id }}">show</a>
+    <a href="" ng-click="removeTrip(key)">x</a>
+  </li>
+</ul>
+<p>toto</p>
+
+<div>
+  <input ng-model="trip.name" ng-keydown="addTrip($event)" type="text" />
+</div>

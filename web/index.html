@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="trip">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Trip</title>
+<link rel="stylesheet" href="/build/_bower.css" />
+<link rel="stylesheet" href="/build/style.css" />
+<base href="/">
+</head>
+
+<body>
+  
+  <div  class="container-fluid" style="height:100%;">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            RoadTrip
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div ng-view style="height:100%;"></div>
+    <div id="credit">1 icon from <a href="http://icon-download.com" title="icon-downloads">www.icon-download.com</a></div>
+  </div>
+
+</body>
+  <script type="text/javascript">document.write('<script src="//localhost:35729/livereload.js?snipver=1" type="text/javascript"><\/script>')</script>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZYUqLlde4h2Ge9g0WlKEJpzE3ixM33sk">
+  </script>
+  <script type="text/javascript"
+    src="http://google-maps-utility-library-v3.googlecode.com/svn/tags/markerwithlabel/1.1.9/src/markerwithlabel_packed.js">
+  </script>
+  <script src="build/main.js"></script>
+
+</body>
+</html>

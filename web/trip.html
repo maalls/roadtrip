@@ -1,0 +1,67 @@
+<div class="row" style="height:100%;">
+  <div class="col-md-2" id="left-panel" >
+    <h3><input type="text" ng-model="trip.name" /></h1>
+
+    <ul ui-sortable="sortableOptions" ng-model="events" class="list-group" id="event-list">
+      <li data-id="{{event.$id}}" ng-repeat="(key, event) in events | orderBy:'$priority' " class="list-group-item header-{{event.header}}" ng-class="{selected: active_event && active_event.$id == event.$id }">
+        <img src="/images/move.png" class="move-icon" />
+        <span class="debug-id">{{key}} - {{event.$priority}} - {{event.$id}} </span> 
+        <input id="event-{{event.$id}}" ng-model="event.name" type="text" ng-keyup="keyup($event, key, event)" ng-focus="setActive(event, $event)" ng-change="update(event)"  />
+
+      </li>
+      <li class="list-group-item">
+        <input type="text" ng-model="event.name" ng-keypress="add($event)" />
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-10" id="right-panel">
+    <h1><input class="form-control" placeholder="Entry name" id="active-event-name" ng-keypress="activeNameKeypress($event)" ng-model="active_event.name" type="text" /></h1>
+
+    <div class="row" >
+
+      <div class="col-md-5" style="border:1px solid blue">
+        <div ng-if="active_event.location.formatted_address != '' && active_event.location_confirmed">
+          <p>{{active_event.location.formatted_address }}</p>
+          <p><a href="" ng-click="active_event.location_confirmed = false;">change location</a></p>
+        </div>
+
+        <div ng-if="!active_event.location_confirmed">
+          <p>location <input id="active-event-location" ng-keypress="search($event)" ng-model="active_event.location.formatted_address" type="text" /></p>
+          
+          <div ng-if="active_event.searchResults && !active_event.location_confirmed">
+            <p>Suggestions:</p>
+            <ul>
+              <li ng-repeat="result in active_event.searchResults">
+              <p><a href="" ng-click="selectAddress(result)">{{result.formatted_address}}</a></p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <span id="total"></span>
+      </div>
+  
+
+      <div ng-if="clicked_event" class="col-md-5" style="border:1px solid blue">
+      <p>{{clicked_event.name}}: {{clicked_event.location.formatted_address}} </p>
+      <p><a href="" ng-click="setActive(clicked_event)">center</a></p>
+      </div>
+
+    </div>
+
+    <div id="map-canvas" style="width: 100%;"></div>
+
+
+    
+    <div>
+      <p>Notes</p>
+      <textarea ng-model="active_event.note" style="display:block; width:100%; height: 400px;"></textarea>
+    </div>
+
+    <p><input type="text" ng-model="active_event.$priority" /></p>
+    <p><a href="" ng-click="keyAsPriority()">fix priority</a>
+  </div>
+</div>

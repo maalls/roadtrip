@@ -1,0 +1,14 @@
+{
+  "name": "grunt-reload",
+  "version": "1.0.0",
+  "devDependencies": {
+        "grunt": "~0.4.3",
+        "grunt-contrib-sass": "~0.8.0",
+        "matchdep": "~0.3.0",
+        "grunt-express": "~1.2.1",
+        "grunt-contrib-watch": "~0.6.0",
+        "grunt-contrib-concat": "~0.5.0",
+        "grunt-open": "~0.2.3",
+        "grunt-bower-concat": "~0.4.0"
+  }
+}
