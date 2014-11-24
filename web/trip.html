@@ -5,7 +5,7 @@
     <ul ui-sortable="sortableOptions" ng-model="events" class="list-group" id="event-list">
       <li data-id="{{event.$id}}" ng-repeat="(key, event) in events | orderBy:'$priority' " class="list-group-item header-{{event.header}}" ng-class="{selected: active_event && active_event.$id == event.$id }">
         <img src="/images/move.png" class="move-icon" />
-        <span class="debug-id">{{key}} - {{event.$priority}} - {{event.$id}} </span> 
+        <!--span class="debug-id">{{key}} - {{event.$priority}} - {{event.$id}} </span--> 
         <input id="event-{{event.$id}}" ng-model="event.name" type="text" ng-keyup="keyup($event, key, event)" ng-focus="setActive(event, $event)" ng-change="update(event)"  />
 
       </li>
