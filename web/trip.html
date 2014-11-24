@@ -1,5 +1,5 @@
 <div class="row" style="height:100%;">
-  <div class="col-md-2" id="left-panel" >
+  <div class="col-md-3 col-lg-2" id="left-panel" >
     <h3><input type="text" ng-model="trip.name" /></h1>
 
     <ul ui-sortable="sortableOptions" ng-model="events" class="list-group" id="event-list">
@@ -15,7 +15,7 @@
     </ul>
   </div>
 
-  <div class="col-md-10" id="right-panel">
+  <div class="col-md-9 col-lg-10" id="right-panel">
     <h1><input class="form-control" placeholder="Entry name" id="active-event-name" ng-keypress="activeNameKeypress($event)" ng-model="active_event.name" type="text" /></h1>
 
     <div class="row" >
